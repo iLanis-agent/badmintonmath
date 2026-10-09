@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Badminton math - courts, club nights and rally scores</title>
+<style>
+  :root { --ink:#14231a; --accent:#0e7a3d; --paper:#f6f8f4; --card:#ffffff; --line:#d8e2d8; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: Georgia, 'Times New Roman', serif; background:var(--paper); color:var(--ink); }
+  header { padding:2rem 1.25rem 1rem; max-width:960px; margin:0 auto; }
+  h1 { font-size:1.9rem; margin:0 0 .35rem; }
+  header p { margin:.25rem 0; color:#3d5243; max-width:46rem; line-height:1.45; }
+  .norms { font-size:.9rem; color:#4a6350; margin-top:.6rem; }
+  main { max-width:960px; margin:0 auto; padding:0 1.25rem 3rem; display:grid; gap:1.25rem; }
+  @media (min-width:820px){ main { grid-template-columns:1fr 1fr 1fr; } }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.1rem 1.25rem; }
+  .card h2 { font-size:1.15rem; margin:.1rem 0 .5rem; }
+  .card p.desc { font-size:.9rem; color:#4a6350; margin:.2rem 0 .8rem; line-height:1.4; }
+  label { display:block; font-size:.85rem; margin:.55rem 0 .15rem; color:#33463a; }
+  input { width:100%; padding:.45rem .5rem; font-size:1rem; border:1px solid var(--line); border-radius:6px; font-family:inherit; }
+  button { margin-top:.8rem; width:100%; padding:.55rem; font-size:1rem; font-family:inherit; background:var(--accent); color:#fff; border:0; border-radius:6px; cursor:pointer; }
+  button:hover { background:#0b6532; }
+  .out { margin-top:.9rem; font-size:.95rem; line-height:1.5; min-height:3.2rem; }
+  .out .big { font-size:1.35rem; font-weight:bold; }
+  .band { display:inline-block; margin-top:.35rem; padding:.15rem .55rem; border-radius:999px; background:#e3efe5; color:#0b5a2e; font-size:.82rem; }
+  .err { color:#a02323; }
+  footer { max-width:960px; margin:0 auto; padding:0 1.25rem 2.5rem; font-size:.85rem; color:#5a7261; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Badminton math</h1>
+  <p>Courts from hall dimensions, club nights from headcount, and the rally-scoring arithmetic nobody can do at 29-29. Exact arithmetic; every borrowed number is labeled.</p>
+  <p class="norms">Labeled norms: playing court 13.40 &times; 6.10 m (BWF doubles). Clearances 1.2 m beside and 1.5 m behind are club norms, not BWF rules. Rally scoring to 21, win by 2, cap 30.</p>
+</header>
+<main>
+  <section class="card" id="courts">
+    <h2>Court planner</h2>
+    <p class="desc">How many full-size courts fit in a hall, with labeled clearances, best orientation and the leftover margin.</p>
+    <label for="c-w">Hall width (m)</label>
+    <input id="c-w" type="number" step="0.01" min="0" value="20">
+    <label for="c-l">Hall length (m)</label>
+    <input id="c-l" type="number" step="0.01" min="0" value="30">
+    <button id="c-go">Plan courts</button>
+    <div class="out" id="c-out"></div>
+  </section>
+
+  <section class="card" id="rr">
+    <h2>Club night round robin</h2>
+    <p class="desc">Everyone plays everyone. Matches, rounds and wall-clock time on the courts you actually have.</p>
+    <label for="r-n">Players or pairs</label>
+    <input id="r-n" type="number" step="1" min="2" value="8">
+    <label for="r-m">Minutes per match</label>
+    <input id="r-m" type="number" step="1" min="1" value="40">
+    <label for="r-c">Courts available</label>
+    <input id="r-c" type="number" step="1" min="1" value="2">
+    <button id="r-go">Size the night</button>
+    <div class="out" id="r-out"></div>
+  </section>
+
+  <section class="card" id="rally">
+    <h2>Rally score helper</h2>
+    <p class="desc">Points each side needs from here, and which service box the server stands in.</p>
+    <label for="s-a">Score - side A</label>
+    <input id="s-a" type="number" step="1" min="0" max="30" value="20">
+    <label for="s-b">Score - side B</label>
+    <input id="s-b" type="number" step="1" min="0" max="30" value="19">
+    <button id="s-go">Read the game</button>
+    <div class="out" id="s-out"></div>
+  </section>
+</main>
+<footer>
+  Built by the app factory. <a href="index.html">About</a> &middot; <a href="https://github.com/iLanis-agent/badmintonmath">Source</a>
+</footer>
+<script src="engine.js"></script>
+<script>
+(function () {
+  'use strict';
+  var M = window.BadmintonMath;
+  function $(id){ return document.getElementById(id); }
+  function num(id){ return parseFloat($(id).value); }
+  function show(el, html){ el.classList.remove('err'); el.innerHTML = html; }
+  function fail(el, msg){ el.classList.add('err'); el.textContent = msg; }
+
+  $('c-go').addEventListener('click', function () {
+    var out = $('c-out');
+    try {
+      var r = M.courts(num('c-w'), num('c-l'));
+      if (r.courts === 0) {
+        show(out, '<span class="big">No fit.</span> Needs ' + r.needed_length + ' m of clear length either way.' +
+          '<br><span class="band">' + r.verdict + '</span>');
+      } else {
+        show(out, '<span class="big">' + r.courts + ' court' + (r.courts > 1 ? 's' : '') + '</span> ' + r.orientation +
+          '<br>' + r.used_width + ' m used, ' + r.margin + ' m spare across the width' +
+          '<br><span class="band">' + r.verdict + '</span>');
+      }
+    } catch (e) { fail(out, e.message); }
+  });
+
+  $('r-go').addEventListener('click', function () {
+    var out = $('r-out');
+    try {
+      var r = M.roundrobin(num('r-n'), num('r-m'), num('r-c'));
+      var h = Math.floor(r.wall_minutes / 60), m = r.wall_minutes % 60;
+      show(out, '<span class="big">' + r.matches + ' matches</span> over ' + r.rounds + ' rounds (' + r.per_round + ' at a time)' +
+        '<br>about ' + (h > 0 ? h + ' h ' + (m ? m + ' min' : '') : m + ' min') + ' on ' + $('r-c').value + ' court' + (num('r-c') > 1 ? 's' : '') +
+        '<br><span class="band">' + r.verdict + '</span>');
+    } catch (e) { fail(out, e.message); }
+  });
+
+  $('s-go').addEventListener('click', function () {
+    var out = $('s-out');
+    try {
+      var r = M.rally(num('s-a'), num('s-b'));
+      show(out, '<span class="big">A needs ' + r.need_a + ', B needs ' + r.need_b + '</span>' +
+        '<br>if A serves: ' + r.box_if_a_serves + ' service box (even score right, odd left)' +
+        '<br><span class="band">' + r.status + '</span>');
+    } catch (e) { fail(out, e.message); }
+  });
+})();
+</script>
+</body>
+</html>
