@@ -1,0 +1,602 @@
+[
+ {
+  "card": "courts",
+  "args": [
+   20,
+   30
+  ],
+  "expect": {
+   "courts": 2,
+   "orientation": "along length",
+   "used_width": 15.8,
+   "margin": 4.2,
+   "needed_length": 16.4,
+   "verdict": "club hall"
+  }
+ },
+ {
+  "card": "courts",
+  "args": [
+   10,
+   30
+  ],
+  "expect": {
+   "courts": 1,
+   "orientation": "along length",
+   "used_width": 8.5,
+   "margin": 1.5,
+   "needed_length": 16.4,
+   "verdict": "single court"
+  }
+ },
+ {
+  "card": "courts",
+  "args": [
+   30,
+   30
+  ],
+  "expect": {
+   "courts": 3,
+   "orientation": "along length",
+   "used_width": 23.1,
+   "margin": 6.9,
+   "needed_length": 16.4,
+   "verdict": "club hall"
+  }
+ },
+ {
+  "card": "courts",
+  "args": [
+   50,
+   30
+  ],
+  "expect": {
+   "courts": 6,
+   "orientation": "along length",
+   "used_width": 45.0,
+   "margin": 5.0,
+   "needed_length": 16.4,
+   "verdict": "tournament hall"
+  }
+ },
+ {
+  "card": "courts",
+  "args": [
+   8,
+   20
+  ],
+  "expect": {
+   "courts": 0,
+   "orientation": "no fit",
+   "used_width": 0.0,
+   "margin": 8.0,
+   "needed_length": 16.4,
+   "verdict": "no fit"
+  }
+ },
+ {
+  "card": "courts",
+  "args": [
+   30,
+   15
+  ],
+  "expect": {
+   "courts": 1,
+   "orientation": "across hall",
+   "used_width": 15.8,
+   "margin": 14.2,
+   "needed_length": 9.1,
+   "verdict": "single court"
+  }
+ },
+ {
+  "card": "courts",
+  "args": [
+   15.8,
+   20
+  ],
+  "expect": {
+   "courts": 2,
+   "orientation": "along length",
+   "used_width": 15.8,
+   "margin": 0.0,
+   "needed_length": 16.4,
+   "verdict": "club hall"
+  }
+ },
+ {
+  "card": "courts",
+  "args": [
+   15.79,
+   20
+  ],
+  "expect": {
+   "courts": 1,
+   "orientation": "along length",
+   "used_width": 8.5,
+   "margin": 7.29,
+   "needed_length": 16.4,
+   "verdict": "single court"
+  }
+ },
+ {
+  "card": "courts",
+  "args": [
+   7.3,
+   16.4
+  ],
+  "expect": {
+   "courts": 0,
+   "orientation": "no fit",
+   "used_width": 0.0,
+   "margin": 7.3,
+   "needed_length": 16.4,
+   "verdict": "no fit"
+  }
+ },
+ {
+  "card": "courts",
+  "args": [
+   7.5,
+   16.5
+  ],
+  "expect": {
+   "courts": 0,
+   "orientation": "no fit",
+   "used_width": 0.0,
+   "margin": 7.5,
+   "needed_length": 16.4,
+   "verdict": "no fit"
+  }
+ },
+ {
+  "card": "courts",
+  "args": [
+   8.5,
+   16.4
+  ],
+  "expect": {
+   "courts": 1,
+   "orientation": "along length",
+   "used_width": 8.5,
+   "margin": 0.0,
+   "needed_length": 16.4,
+   "verdict": "single court"
+  }
+ },
+ {
+  "card": "courts",
+  "args": [
+   100,
+   20
+  ],
+  "expect": {
+   "courts": 13,
+   "orientation": "along length",
+   "used_width": 96.1,
+   "margin": 3.9,
+   "needed_length": 16.4,
+   "verdict": "tournament hall"
+  }
+ },
+ {
+  "card": "courts",
+  "args": [
+   0,
+   30
+  ],
+  "error": "positive"
+ },
+ {
+  "card": "courts",
+  "args": [
+   -5,
+   30
+  ],
+  "error": "positive"
+ },
+ {
+  "card": "courts",
+  "args": [
+   20,
+   0
+  ],
+  "error": "positive"
+ },
+ {
+  "card": "courts",
+  "args": [
+   20,
+   -1
+  ],
+  "error": "positive"
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   8,
+   40,
+   2
+  ],
+  "expect": {
+   "matches": 28,
+   "rounds": 7,
+   "per_round": 4,
+   "wall_minutes": 560,
+   "verdict": "marathon"
+  }
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   4,
+   30,
+   1
+  ],
+  "expect": {
+   "matches": 6,
+   "rounds": 3,
+   "per_round": 2,
+   "wall_minutes": 180,
+   "verdict": "long session"
+  }
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   2,
+   30,
+   1
+  ],
+  "expect": {
+   "matches": 1,
+   "rounds": 1,
+   "per_round": 1,
+   "wall_minutes": 30,
+   "verdict": "quick evening"
+  }
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   5,
+   20,
+   2
+  ],
+  "expect": {
+   "matches": 10,
+   "rounds": 5,
+   "per_round": 2,
+   "wall_minutes": 100,
+   "verdict": "quick evening"
+  }
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   6,
+   25,
+   3
+  ],
+  "expect": {
+   "matches": 15,
+   "rounds": 5,
+   "per_round": 3,
+   "wall_minutes": 125,
+   "verdict": "long session"
+  }
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   10,
+   45,
+   1
+  ],
+  "expect": {
+   "matches": 45,
+   "rounds": 9,
+   "per_round": 5,
+   "wall_minutes": 2025,
+   "verdict": "marathon"
+  }
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   3,
+   15,
+   1
+  ],
+  "expect": {
+   "matches": 3,
+   "rounds": 3,
+   "per_round": 1,
+   "wall_minutes": 45,
+   "verdict": "quick evening"
+  }
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   12,
+   20,
+   4
+  ],
+  "expect": {
+   "matches": 66,
+   "rounds": 11,
+   "per_round": 6,
+   "wall_minutes": 340,
+   "verdict": "marathon"
+  }
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   16,
+   30,
+   8
+  ],
+  "expect": {
+   "matches": 120,
+   "rounds": 15,
+   "per_round": 8,
+   "wall_minutes": 450,
+   "verdict": "marathon"
+  }
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   7,
+   20,
+   7
+  ],
+  "expect": {
+   "matches": 21,
+   "rounds": 7,
+   "per_round": 3,
+   "wall_minutes": 60,
+   "verdict": "quick evening"
+  }
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   1,
+   30,
+   1
+  ],
+  "error": "at least 2"
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   65,
+   30,
+   1
+  ],
+  "error": "under 65"
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   8,
+   0,
+   2
+  ],
+  "error": "positive"
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   8,
+   40,
+   0
+  ],
+  "error": "at least 1 court"
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   2.5,
+   30,
+   1
+  ],
+  "error": "whole"
+ },
+ {
+  "card": "roundrobin",
+  "args": [
+   64,
+   60,
+   1
+  ],
+  "expect": {
+   "matches": 2016,
+   "rounds": 63,
+   "per_round": 32,
+   "wall_minutes": 120960,
+   "verdict": "marathon"
+  }
+ },
+ {
+  "card": "rally",
+  "args": [
+   20,
+   19
+  ],
+  "expect": {
+   "need_a": 1,
+   "need_b": 3,
+   "box_if_a_serves": "right",
+   "status": "game point A"
+  }
+ },
+ {
+  "card": "rally",
+  "args": [
+   19,
+   20
+  ],
+  "expect": {
+   "need_a": 3,
+   "need_b": 1,
+   "box_if_a_serves": "left",
+   "status": "game point B"
+  }
+ },
+ {
+  "card": "rally",
+  "args": [
+   29,
+   29
+  ],
+  "expect": {
+   "need_a": 1,
+   "need_b": 1,
+   "box_if_a_serves": "left",
+   "status": "sudden point - next rally wins (cap 30)"
+  }
+ },
+ {
+  "card": "rally",
+  "args": [
+   20,
+   20
+  ],
+  "expect": {
+   "need_a": 2,
+   "need_b": 2,
+   "box_if_a_serves": "right",
+   "status": "deuce zone - cap 30"
+  }
+ },
+ {
+  "card": "rally",
+  "args": [
+   28,
+   27
+  ],
+  "expect": {
+   "need_a": 1,
+   "need_b": 3,
+   "box_if_a_serves": "right",
+   "status": "deuce zone - cap 30"
+  }
+ },
+ {
+  "card": "rally",
+  "args": [
+   0,
+   0
+  ],
+  "expect": {
+   "need_a": 21,
+   "need_b": 21,
+   "box_if_a_serves": "right",
+   "status": "mid-game"
+  }
+ },
+ {
+  "card": "rally",
+  "args": [
+   14,
+   14
+  ],
+  "expect": {
+   "need_a": 7,
+   "need_b": 7,
+   "box_if_a_serves": "right",
+   "status": "mid-game"
+  }
+ },
+ {
+  "card": "rally",
+  "args": [
+   15,
+   20
+  ],
+  "expect": {
+   "need_a": 7,
+   "need_b": 1,
+   "box_if_a_serves": "left",
+   "status": "game point B"
+  }
+ },
+ {
+  "card": "rally",
+  "args": [
+   21,
+   20
+  ],
+  "expect": {
+   "need_a": 1,
+   "need_b": 3,
+   "box_if_a_serves": "left",
+   "status": "deuce zone - cap 30"
+  }
+ },
+ {
+  "card": "rally",
+  "args": [
+   25,
+   26
+  ],
+  "expect": {
+   "need_a": 3,
+   "need_b": 1,
+   "box_if_a_serves": "left",
+   "status": "deuce zone - cap 30"
+  }
+ },
+ {
+  "card": "rally",
+  "args": [
+   21,
+   19
+  ],
+  "error": "already over"
+ },
+ {
+  "card": "rally",
+  "args": [
+   30,
+   28
+  ],
+  "error": "already over"
+ },
+ {
+  "card": "rally",
+  "args": [
+   29,
+   30
+  ],
+  "error": "already over"
+ },
+ {
+  "card": "rally",
+  "args": [
+   -1,
+   5
+  ],
+  "error": "0 to 30"
+ },
+ {
+  "card": "rally",
+  "args": [
+   31,
+   0
+  ],
+  "error": "0 to 30"
+ },
+ {
+  "card": "rally",
+  "args": [
+   20.5,
+   19
+  ],
+  "error": "whole"
+ }
+]
